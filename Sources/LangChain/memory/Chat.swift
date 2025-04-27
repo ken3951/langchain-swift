@@ -31,7 +31,7 @@ public class BaseChatMemory: BaseMemory {
 
 public class ConversationBufferWindowMemory: BaseChatMemory {
     let memory_key = "history"
-    let k: Int
+    public var k: Int
     public init(k: Int = 2) {
         self.k = k
     }
