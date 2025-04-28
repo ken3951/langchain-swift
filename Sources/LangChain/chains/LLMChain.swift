@@ -71,7 +71,7 @@ public class LLMChain: DefaultChain {
         let inputAndContext = prep_inputs(inputs: args)
         let outputs = await self.generate(input_list: inputAndContext)
         if let o = outputs {
-            let _ = prep_outputs(inputs: args, outputs: [self.outputKey: o.llm_output!])
+            let _ = prep_outputs(inputs: [self.inputKey: args.values.first!], outputs: [self.outputKey: o.llm_output!])
             return o.llm_output!
         } else {
             return nil

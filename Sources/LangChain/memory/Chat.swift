@@ -14,11 +14,11 @@ public class BaseChatMemory: BaseMemory {
     }
     
     public func save_context(inputs: [String: String], outputs: [String: String]) {
-        for (_, input_str) in inputs {
-            self.chat_memory.add_user_message(message: input_str)
+        for (key, input_str) in inputs {
+            self.chat_memory.add_user_message(message: input_str, type: key)
         }
-        for (_, output_str) in outputs {
-            self.chat_memory.add_ai_message(message: output_str)
+        for (key, output_str) in outputs {
+            self.chat_memory.add_ai_message(message: output_str, type: key)
         }
     }
     
@@ -30,10 +30,11 @@ public class BaseChatMemory: BaseMemory {
 }
 
 public class ConversationBufferWindowMemory: BaseChatMemory {
-    let memory_key = "history"
+    public var memory_key = "history"
     public var k: Int
-    public init(k: Int = 2) {
+    public init(k: Int = 2, memoryKey: String = "history") {
         self.k = k
+        self.memory_key = memoryKey
     }
     public override func load_memory_variables(inputs: [String: Any]) -> [String: [String]] {
         // Return history buffer.

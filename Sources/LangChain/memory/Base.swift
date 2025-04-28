@@ -22,12 +22,12 @@ public protocol BaseMemory {
 
 
 public class BaseChatMessageHistory {
-    public func add_user_message(message: String) {
-        self.add_message(message: BaseMessage(content: message, type: "human"))
+    public func add_user_message(message: String, type: String) {
+        self.add_message(message: BaseMessage(content: message, type: type))
     }
     
-    public func add_ai_message(message: String) {
-        self.add_message(message: BaseMessage(content: message, type: "ai"))
+    public func add_ai_message(message: String, type: String) {
+        self.add_message(message: BaseMessage(content: message, type: type))
     }
     
     public func add_message(message: BaseMessage) {
